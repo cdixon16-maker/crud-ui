@@ -6,8 +6,8 @@ export default function BookList(props) {
         <div>
             {props.userMsg && props.userMsg.map(msg => {
                 return (
-                    <Book key={msg._id} title={msg.Title}
-                    Author={msg.Author} />
+                    <Book key={msg._id} id={msg._id} Title={msg.Title}
+                    Author={msg.Author} deleteBooks={props.deleteBooks} updateBooks={props.updateBooks} />
                 )
             })}
         </div>
