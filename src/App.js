@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BookList from "./Components/BookList";
-import NameForm from "./Components/addForm";
 export default class UserMsg extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +9,8 @@ export default class UserMsg extends Component {
     }
     this.fetchBooks=this.fetchBooks.bind(this);
     this.deleteBooks= this.deleteBooks.bind(this);
+    this.addBooks=this.addBooks.bind(this);
+    this.updateBooks=this.updateBooks.bind(this);
   }
 
   fetchBooks() {
@@ -33,19 +34,26 @@ export default class UserMsg extends Component {
     .catch(err =>{
       console.log(err)
     });
-    
   }
-  updateBooks(id) {
-    axios.put(`http://localhost:5000/api/update/${id}`).then(res => {
+  updateBooks(id, Title, Author) {
+    axios.put(`http://localhost:5000/api/update/${id}`, {
+      Title,Author
+    }).then(res => { 
+      if(res.status === 200) {
+        this.fetchBooks();
       console.log(res)
-      this.fetchBooks();
+        
+      }
     })
     .catch(err => {
       console.log(err)
     });
   }
-  addBooks(id) {
-    axios.post(`http://localhost:5000/api/add`).then(res => {
+  addBooks(Title, Author) {
+    axios.post(`http://localhost:5000/api/add`, {
+      Title,Author
+    }).then(res => {
+
       console.log(res)
       this.fetchBooks();
     })
@@ -59,7 +67,7 @@ export default class UserMsg extends Component {
   render() {
     return(
       <div>
-        <NameForm NameForm={this.NameForm} />
+        
         <BookList addBooks={this.addBooks} updateBooks={this.updateBooks} deleteBooks={this.deleteBooks}  userMsg={this.state.userMsg} />
         </div>
       
