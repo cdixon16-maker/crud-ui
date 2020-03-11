@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BookList from "./Components/BookList";
+const web = `https://sheltered-island-80345.herokuapp.com/`;
 export default class UserMsg extends Component {
   constructor(props) {
     super(props);
+  
     this.state = {
       userMsg: ''
     }
@@ -11,10 +13,12 @@ export default class UserMsg extends Component {
     this.deleteBooks= this.deleteBooks.bind(this);
     this.addBooks=this.addBooks.bind(this);
     this.updateBooks=this.updateBooks.bind(this);
+
+    
   }
 
   fetchBooks() {
-    axios.get("http://localhost:5000/api/books").then((res) => {
+    axios.get(`${web}api/books`).then((res) => {
       console.log(res)
       //on success
       this.setState({
@@ -27,7 +31,7 @@ export default class UserMsg extends Component {
     });
   }
   deleteBooks(id) {
-    axios.delete(`http://localhost:5000/api/delete/${id}`).then(res => {
+    axios.delete(`${web}api/book/${id}`).then(res => {
       console.log(res)
       this.fetchBooks();
     })
@@ -36,7 +40,7 @@ export default class UserMsg extends Component {
     });
   }
   updateBooks(id, Title, Author) {
-    axios.put(`http://localhost:5000/api/update/${id}`, {
+    axios.put(`${web}api/book/${id}`, {
       Title,Author
     }).then(res => { 
       if(res.status === 200) {
@@ -50,7 +54,7 @@ export default class UserMsg extends Component {
     });
   }
   addBooks(Title, Author) {
-    axios.post(`http://localhost:5000/api/add`, {
+    axios.post(`${web}api/book`, {
       Title,Author
     }).then(res => {
 
@@ -65,9 +69,10 @@ export default class UserMsg extends Component {
     this.fetchBooks();
   }
   render() {
+    
     return(
+      
       <div>
-        
         <BookList addBooks={this.addBooks} updateBooks={this.updateBooks} deleteBooks={this.deleteBooks}  userMsg={this.state.userMsg} />
         </div>
       

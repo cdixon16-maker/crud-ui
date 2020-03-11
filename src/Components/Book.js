@@ -20,7 +20,7 @@ export default class Book extends Component {
     const handleOnChange = (event) => {
        const {name, value}= event.target;
        const clone = {...this.state};
-       clone [name]=value
+       clone[name]=value
        this.setState(clone)
     }
     const handleUpdateBook = () => {
@@ -42,7 +42,7 @@ export default class Book extends Component {
         <div className="add">
                 <input name="Title" type="text" placeholder="Title" value={this.state.Title} onChange={event => handleOnChange(event)} />
                 <input name="Author" type="text" placeholder="Author" value={this.state.Author} onChange={event => handleOnChange(event)}  />
-                <button onClick={handleAddBook}>Add damn it</button>
+                <button onClick={handleAddBook}>Add Book</button>
         </div>
         <div className="update">
                 <input name="Title" type="text" placeholder="Title" value={this.state.Title} onChange={event => handleOnChange(event)} />
@@ -53,5 +53,4 @@ export default class Book extends Component {
 
         </div>
         
-    )
-}}
+    )}}
