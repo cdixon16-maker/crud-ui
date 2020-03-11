@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BookList from "./Components/BookList";
-const web = `https://sleepy-headland-50143.herokuapp.com/`;
+const web = `https://sleepy-headland-50143.herokuapp.com/api/books`;
 export default class UserMsg extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ export default class UserMsg extends Component {
   }
 
   fetchBooks() {
-    axios.get(`localhostapi/books`).then((res) => {
+    axios.get(`${web}`).then((res) => {
       console.log(res)
       //on success
       this.setState({
@@ -31,7 +31,7 @@ export default class UserMsg extends Component {
     });
   }
   deleteBooks(id) {
-    axios.delete(`${web}api/book/${id}`).then(res => {
+    axios.delete(`${web}/book/${id}`).then(res => {
       console.log(res)
       this.fetchBooks();
     })
@@ -40,7 +40,7 @@ export default class UserMsg extends Component {
     });
   }
   updateBooks(id, Title, Author) {
-    axios.put(`${web}api/book/${id}`, {
+    axios.put(`${web}/book/${id}`, {
       Title,Author
     }).then(res => { 
       if(res.status === 200) {
@@ -54,7 +54,7 @@ export default class UserMsg extends Component {
     });
   }
   addBooks(Title, Author) {
-    axios.post(`${web}api/book`, {
+    axios.post(`${web}/book`, {
       Title,Author
     }).then(res => {
 
