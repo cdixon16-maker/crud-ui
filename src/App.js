@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BookList from "./Components/BookList";
-const web = `https://sleepy-headland-50143.herokuapp.com/api/books`;
+const web = `https://sleepy-headland-50143.herokuapp.com`;
 export default class UserMsg extends Component {
   constructor(props) {
     super(props);
