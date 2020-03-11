@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BookList from "./Components/BookList";
-const web = `https://sleepy-headland-50143.herokuapp.com`;
+const web = `https://sleepy-headland-50143.herokuapp.com/api/`;
 export default class UserMsg extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ export default class UserMsg extends Component {
   }
 
   fetchBooks() {
-    axios.get(`${web}`).then((res) => {
+    axios.get(`${web}/books`).then((res) => {
       console.log(res)
       //on success
       this.setState({
